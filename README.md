@@ -4,15 +4,15 @@
 
 - not finished yet, but the work is in progress
 
-##Description
+## Description
 The App is designed to import data from csv files to database.
 
-##Server
+## Server
 You can find on the Github except the code:
  - sql files
  - some screens
  
-##Database 
+## Database 
 MySQL relational database is divided into several tables:
  - Banks (bank data with currency)
  - Banks files types (avalaible file types for choosen bank)
@@ -25,7 +25,7 @@ MySQL relational database is divided into several tables:
 There's another table, that should be used IMHO (but i didn't at the moment) to store data for client accounts.
 And this information (account_id) should be put into payment operation (for a future, maybe).
 
-##Code
+## Code
 I've used only clear OOP Php (no framework) with Bootstrap external CSS library - to improve the look of the app.
 App files is organised according to MVC pattern.
 

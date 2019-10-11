@@ -8,7 +8,8 @@
 The App is designed to import data from csv files to database.
 
 ## Server
-You can find on the Github except the code:
+What you can find on the Github except the code?
+ - Readme
  - sql files
  - some screens
  

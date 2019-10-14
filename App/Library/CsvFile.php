@@ -74,10 +74,6 @@ class CsvFile implements FilesInterface
     {
         $dataArray = explode(':', $utfText);
         $client = explode(' ', $dataArray[1]);
-        $surname = trim($client[2]);
-        if ($client[3]) {
-            $surname .= trim($client[3]);
-        }
         return trim($client[1]) . ' ' . trim($client[2]);
     }
 

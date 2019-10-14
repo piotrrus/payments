@@ -32,8 +32,12 @@ I've used only clear OOP Php (no framework) with Bootstrap external CSS library 
 
 App files is organised according to MVC pattern.
 
-Controllers use a Template class to show choosen view file together with supported data.
+Controllers organise all needed operations and use a Template class to show choosen view file together with supported data.
+
 All operations associated with database were placed in a two database library classes: abstract DbBase and Database.
 
 I'm using very simple autoloader to load classes automatically.
 Queries needed to get data from database were constructed as a pure text. No Sql contructor, no ORM were used.
+
+All post data are taken from Request class, which provide sanitized value by key.
+I've assumed that can be different file formats, so i decide to use FileFactory to provide the right file class.

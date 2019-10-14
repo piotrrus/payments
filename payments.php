@@ -4,7 +4,6 @@
             <link rel="stylesheet" type="text/css" href="public/css/style.css"  />
             <link rel="stylesheet" type="text/css" href="public/css/bootstrap.min.css" />
             <script src="public/js/jquery-1.11.3.min.js"></script>
-            <script src="public/js/jquery.validate.js"></script>
             <script src="public/js/bootstrap.js"></script>
         </meta>
         <title>Bank payments</title>
@@ -14,7 +13,7 @@
         <?php include 'App/views/common/menu.php'; ?>
         <?php
         include 'app.php';
-        $controller = new App\Controllers\IndexController();
+        $controller = new App\Controllers\PaymentsController();
         ?>
     </body>
 </html>

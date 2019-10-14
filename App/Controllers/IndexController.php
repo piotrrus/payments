@@ -3,20 +3,21 @@
 namespace App\Controllers;
 
 use App\Models\Bank;
+use App\Models\Payments;
 use App\Library\Template;
-use App\Library\Formatter;
-use App\Library\CsvFile;
-use App\Interfaces\ImportInterface;
+use App\Library\FilesImportFactory;
 
-class IndexController extends Controller implements ImportInterface
+class IndexController extends Controller
 {
 
     private $bank;
     private $view;
+    private $payments;
 
     public function __construct()
     {
         $this->bank = new Bank();
+        $this->payments = new Payments();
         $this->view = new Template();
 
         $method = $this->getMethodName();
@@ -26,6 +27,9 @@ class IndexController extends Controller implements ImportInterface
         }
     }
 
+    /**
+     * render form with bank list and file input
+     */
     public function index()
     {
         echo $this->view->render('import', [
@@ -33,54 +37,63 @@ class IndexController extends Controller implements ImportInterface
         ]);
     }
 
+    /**
+     * render imported data
+     */
     public function show()
     {
         $importedData = [];
-        $format = new Formatter();
-        $csvFile = new CsvFile();
-
+        
         $bankFileTypeId = $this->postRequest('bankFileTypeId');
         $bankData = $this->bank->getBankDataByFileTypeId($bankFileTypeId);
 
-        $file = $_FILES['file']['tmp_name'];
+        $import = new FilesImportFactory();
+        $file = $import->getFileType('dat');
 
-        $fileInfo = $_FILES['file']['name'];
-        $ext = pathinfo($fileInfo, PATHINFO_EXTENSION);
+        $fileName = $_FILES['file']['tmp_name'];
 
-        $this->checkFileTypeForBank();
+        if ($this->checkFileTypeForBank()) {
+            $importedData = $file->getFile($fileName);
+            $newImportedData = $this->checkIfImportedDataExist($importedData);
 
-//        if ($ext != 'dat') {
-//             var_dump($ext);            exit();
-//        }
+            echo $this->view->render('preview', [
+                'importedData' => $newImportedData,
+                'bankData' => $bankData,
+                'fileExtension' => $this->checkFileTypeForBank()
+            ]);
+        } else {
+            $this->error($bankData);
+        }
+    }
 
-        
-        
-        $importedData = $csvFile->getCsvFile($file);
-        // $this->checkIfImportedDataExist($importedData);
-        
-        echo $this->view->render('preview', [
-            'importedData' => $importedData,
-            'bankData' => $bankData,
-            'fileExtension' => $ext
+    private function error($bankData)
+    {
+        echo $this->view->render('fileMessage', [
+            'bankData' => $bankData
         ]);
     }
 
     public function save()
     {
-        $data = $this->bank->allWithCurrency();
-        //print_r($data);
+        $postArgs = filter_input_array(INPUT_POST);
+        $payments = new Payments();
+        $payments->save($postArgs);
+        echo $this->view->render('payments/index', [
+            'payments' => $this->payments->all()
+        ]);
     }
 
+    /**
+     * comparing bank file type & customer file
+     * @return boolean
+     */
     private function checkFileTypeForBank()
     {
-
         $bankFileTypeId = $this->postRequest('bankFileTypeId');
         $bankData = $this->bank->getBankDataByFileTypeId($bankFileTypeId);
         $bankFileExtension = $bankData['file_type'];
         $importedFile = $_FILES['file']['name'];
         $ext = pathinfo($importedFile, PATHINFO_EXTENSION);
-        var_dump($ext);
-        var_dump($bankFileExtension);
 
         if ($ext != $bankFileExtension) {
             return false;
@@ -88,20 +101,18 @@ class IndexController extends Controller implements ImportInterface
         return true;
     }
 
+    /**
+     * check if imported data (row) already exist in database
+     * @param array $data
+     * @return type
+     */
     private function checkIfImportedDataExist(array $data)
     {
         for ($k = 1; $k <= count($data); $k++) {
-            $exist = false;
-            if ($this->bank->checkIfDataExist($data[$k])){
-               $exist = true; 
-            }
-            $data[$k]['exist'] = $exist;
-            echo $this->bank->checkIfDataExist($importedData[$k]) . '</br>';
-//            $date = $importedData[$k]['date'];
-//            $client = $importedData[$k]['client'];
-//            $value = $importedData[$k]['value'];
-//            $account = $importedData[$k]['account'];
+            $exist = $this->payments->checkIfDataExist($data[$k]);
+            $data[$k]['exist'] = $exist['amount'];
         }
+        return $data;
     }
 
 }

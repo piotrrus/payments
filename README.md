@@ -2,14 +2,12 @@
 
 ## Payments Import App 
 
-- not finished yet, but the work is in progress
-
-## Description
 The App is designed to import data from csv files to database.
+Data stored to database at the moment are not validated.
 
 ## Server
 What you can find on the Github except the code?
- - Readme
+ - readme
  - sql files
  - some screens
  
@@ -17,11 +15,12 @@ What you can find on the Github except the code?
 MySQL relational database is divided into several tables:
  - Banks (bank data with currency)
  - Banks files types (avalaible file types for choosen bank)
- - Clients (fundametal client informations)
+ - Clients (fundametal client informations) - not used
  - Clients accounts (clients accounts numbers) - not used
  - Currency (list of avalaible currencies)
  - Files types (list of avalaible file types)
- - Payment operations (all clients operations)
+ - Payment operations (all clients operations) - some data should be separated = not used
+ - Payment operations2 (all clients operations)
  
 I've used simple and old PDO library class to handle with database.
 

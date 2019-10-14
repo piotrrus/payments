@@ -13,6 +13,7 @@ class Request
 
     public static function post($key, $value = false)
     {
+        $value = self::sanitizeString($value);
         return (!empty($_POST[$key])) ? $_POST[$key] : $value;
     }
 

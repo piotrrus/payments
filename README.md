@@ -36,7 +36,7 @@ Controllers organise all needed operations and use a Template class to show choo
 
 All operations associated with database were placed in a two database library classes: abstract DbBase and Database.
 
-I'm using very simple autoloader to load classes automatically.
+It's been used very simple autoloader to load classes automatically.
 Queries needed to get data from database were constructed as a pure text. No Sql contructor, no ORM were used.
 
 All post data are taken from Request class, which provide sanitized value by key.

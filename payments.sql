@@ -88,16 +88,18 @@ CREATE TABLE IF NOT EXISTS `client_accounts` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `client_id` int(11) NOT NULL,
   `bank_id` int(11) NOT NULL,
-  `account_nr` int(11) NOT NULL,
+  `account_nr` char(26) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `client_id` (`client_id`),
   KEY `bank_id` (`bank_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Zrzucanie danych dla tabeli payments.client_accounts: 0 rows
+-- Zrzucanie danych dla tabeli payments.client_accounts: 1 rows
 /*!40000 ALTER TABLE `client_accounts` DISABLE KEYS */;
+INSERT INTO `client_accounts` (`id`, `client_id`, `bank_id`, `account_nr`, `created_at`, `updated_at`) VALUES
+	(1, 3, 2, '40114020040000390274000003', NULL, NULL);
 /*!40000 ALTER TABLE `client_accounts` ENABLE KEYS */;
 
 -- Zrzut struktury tabela payments.currency
@@ -130,26 +132,49 @@ CREATE TABLE IF NOT EXISTS `files_types` (
 -- Zrzucanie danych dla tabeli payments.files_types: 3 rows
 /*!40000 ALTER TABLE `files_types` DISABLE KEYS */;
 INSERT INTO `files_types` (`id`, `name`, `created_at`, `updated_at`) VALUES
-	(1, 'CSV', NULL, NULL),
-	(2, 'XML', NULL, NULL),
-	(3, 'DAT', NULL, NULL);
+	(1, 'csv', NULL, NULL),
+	(2, 'xml', NULL, NULL),
+	(3, 'dat', NULL, NULL);
 /*!40000 ALTER TABLE `files_types` ENABLE KEYS */;
 
 -- Zrzut struktury tabela payments.payment_operations
 CREATE TABLE IF NOT EXISTS `payment_operations` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `client_id` int(11) NOT NULL,
-  `account` int(26) NOT NULL,
+  `account` char(26) NOT NULL,
   `amount` decimal(6,2) NOT NULL,
+  `account_id` int(11) NOT NULL,
   `payment_purpose` char(255) NOT NULL,
-  `payment_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `payment_date` date NOT NULL,
   `imported_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Zrzucanie danych dla tabeli payments.payment_operations: 0 rows
+-- Zrzucanie danych dla tabeli payments.payment_operations: 1 rows
 /*!40000 ALTER TABLE `payment_operations` DISABLE KEYS */;
+INSERT INTO `payment_operations` (`id`, `client_id`, `account`, `amount`, `account_id`, `payment_purpose`, `payment_date`, `imported_at`) VALUES
+	(1, 3, '', 0.01, 1, 'test', '2019-10-12', '2019-10-12 09:29:31');
 /*!40000 ALTER TABLE `payment_operations` ENABLE KEYS */;
+
+-- Zrzut struktury tabela payments.payment_operations2
+CREATE TABLE IF NOT EXISTS `payment_operations2` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` char(30) NOT NULL,
+  `surname` char(30) NOT NULL,
+  `account` char(26) NOT NULL,
+  `amount` char(8) NOT NULL,
+  `payment_purpose` char(255) NOT NULL,
+  `payment_date` date NOT NULL,
+  `imported_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+
+-- Zrzucanie danych dla tabeli payments.payment_operations2: 3 rows
+/*!40000 ALTER TABLE `payment_operations2` DISABLE KEYS */;
+INSERT INTO `payment_operations2` (`id`, `name`, `surname`, `account`, `amount`, `payment_purpose`, `payment_date`, `imported_at`) VALUES
+	(8, 'TOMASZ', 'BUBIK', '82114020040000650232000013', '851,44', 'SPLATA POZYCZKI ID KLIENTA 1001862', '2015-12-02', '2019-10-14 08:23:26'),
+	(7, 'MARIUSZ', 'KROT', '54114020040000388233200012', '270,00', 'PRZEDLUZENIE POZYCZKI KLIENT ID 111 0120', '2015-12-02', '2019-10-14 08:23:26');
+/*!40000 ALTER TABLE `payment_operations2` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;

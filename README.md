@@ -29,6 +29,7 @@ And this information (account_id) should be put into payment operation table.
 
 ## Code
 I've used only clear OOP Php (no framework) with Bootstrap external CSS library - to improve the look of the app.
+
 App files is organised according to MVC pattern.
 
 Controllers use a Template class to show choosen view file together with supported data.

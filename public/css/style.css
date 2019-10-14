@@ -31,6 +31,10 @@ a:link, a:visited { color: #dc8924; text-decoration: none}
 a:hover { color: #CC3300; text-decoration:underline }
 a:hover,a:active { outline:none }
 
+.alert a, .alert .alert-link {
+  font-weight: bold;
+}
+
 p { margin: 0 0 15px 0 }
 
 .clear { clear: both; display: block; }
@@ -57,7 +61,7 @@ table.listax {
 td.listax{ 
     color:white; 
     border-bottom:1px solid #e5eff8;
-    padding:.3em 1em;
+    padding:.3em .4em;
 } 
 .td-right{ 
     text-align:right;
@@ -68,6 +72,10 @@ tr.listax{
     height:30px;
 }
 
-.not-exist{
-    color: #e26930;
+.exist{
+   padding:.1em 1em;
+}
+
+.btn-row{
+    padding-top: 35px;
 }

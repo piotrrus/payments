@@ -4,9 +4,14 @@ namespace App\Models;
 
 use App\Library\Database;
 
-class Model
+abstract class Model
 {
+
     private $db;
+
+    abstract public function all();
+
+    abstract public function search(int $id);
 
     public function __construct()
     {
@@ -23,9 +28,9 @@ class Model
         return $this->db->getDataSingle($query);
     }
 
-    public function countData($query)
+    public function countRows($query)
     {
-        $this->db->countData($query);
+        $this->db->countRows($query);
     }
 
     public function updateArr($arr)

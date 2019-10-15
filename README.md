@@ -4,6 +4,7 @@
 
 The App is designed to import data from csv files to database.
 Data stored to database at the moment are not validated.
+According to task rules - it's been used only clear OOP Php (no framework) and without any external library.
 
 ## Server
 What you can find on the Github except the code?
@@ -28,7 +29,7 @@ There's another table, that should be used IMHO (but i didn't at the moment) to 
 And this information (account_id) should be put into payment operation table.
 
 ## Code
-I've used only clear OOP Php (no framework) with Bootstrap external CSS library - to improve the look of the app.
+I've used only clear OOP Php with Bootstrap external CSS library - to improve the look of the app.
 
 App files is organised according to MVC pattern.
 

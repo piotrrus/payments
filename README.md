@@ -6,6 +6,8 @@ The App is designed to import data from csv files to database.
 Data stored to database at the moment are not validated.
 According to task rules - it's been used only clear OOP Php (no framework) and without any external library.
 
+I put also second solution: Rest by Laravel and Front in Angular : https://github.com/piotrrus/payments-rest-angular.
+
 ## Server
 What you can find on the Github except the code?
  - readme

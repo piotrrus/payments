@@ -10,7 +10,7 @@ class FilesImportFactory
 
     /**
      *
-     * @param string $assort
+     * @param string $fileType
      * @return form class model
      */
     public function getFileType(string $fileType)

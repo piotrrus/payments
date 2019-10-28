@@ -33,7 +33,7 @@ class IndexController extends Controller
     public function index()
     {
         echo $this->view->render('import', [
-            'bank_list' => $this->bank->allWithFilesTypes()
+            'bankList' => $this->bank->allWithFilesTypes()
         ]);
     }
 

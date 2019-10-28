@@ -7,11 +7,11 @@
             <script src="public/js/bootstrap.js"></script>
         </meta>
         <title>Bank payments</title>
-    </head>	
+    </head>
 
     <body>
-        <?php include 'App/views/common/menu.php'; ?>
         <?php
+        include 'App/views/common/menu.php';
         include 'app.php';
         $controller = new App\Controllers\PaymentsController();
         ?>

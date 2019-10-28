@@ -12,7 +12,7 @@
                         <div class="col-md-4">
                             <select class="form-control" name="bankFileTypeId">
                                 <?php
-                                foreach ($bank_list as $row) {
+                                foreach ($bankList as $row) {
                                     echo '<option value=' . $row['bank_file_type_id'] . '>'
                                     . $row['bank'] . ' (' . $row['file_type'] . ')'
                                     . "</option>";

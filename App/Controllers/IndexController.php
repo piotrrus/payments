@@ -114,5 +114,4 @@ class IndexController extends Controller
         }
         return $data;
     }
-
 }

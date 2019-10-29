@@ -4,7 +4,6 @@
         <div class="panel panel-default">
             <div class="panel-heading">Payments - choose the file to import data</div>
             <div class="panel-body" style="min-height:300px;">
-<!--                import/import.php-->
                 <form enctype="multipart/form-data" action="index.php?action=show" method="post">
                     <input type="hidden" name="MAX_FILE_SIZE" value="2000000">
 
@@ -22,7 +21,6 @@
                         </div>
 
                         <div class="col-md-4">
-<!--                            <input type="file" name="file" style="margin-top:-7px"/>-->
                             <label class="btn btn-default medium" for="file-selector">
                                 <input id="file-selector" name="file" type="file" style="display: none">
                                 Choose file

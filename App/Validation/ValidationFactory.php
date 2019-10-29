@@ -8,6 +8,11 @@ use App\Validation\Validators\AccountValidator;
 use App\Validation\Validators\RequiredValidator;
 use App\Validation\Validators\DateValidator;
 
+/**
+ * Description of ValidationFactory
+ * return choosen validator class according to validation rules
+ * @author piotrek
+ */
 class ValidationFactory
 {
 

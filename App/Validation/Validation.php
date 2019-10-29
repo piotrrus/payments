@@ -5,6 +5,11 @@ namespace App\Validation;
 use App\Validation\Rules\PaymentsRules;
 use App\Validation\ValidationFactory;
 
+/**
+ * Description of Validation
+ * validate field values according to rules
+ * @author piotrek
+ */
 class Validation
 {
     private $rules;
